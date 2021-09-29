@@ -7,6 +7,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { ProductoComponent } from './pages/producto/producto.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 
@@ -15,7 +16,8 @@ import { FooterComponent } from '../components/footer/footer.component';
     HeaderComponent,
     FooterComponent,
     RegistroComponent,
-    ProductoComponent
+    ProductoComponent,
+    LoginComponent
   ],
   exports:[
     RegistroComponent,

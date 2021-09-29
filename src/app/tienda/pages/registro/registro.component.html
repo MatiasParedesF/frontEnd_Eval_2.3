@@ -1,1 +1,29 @@
-<p>registro works!</p>
+<div id="login">
+    <h3 class="text-center">Registro</h3>
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12 margin-bottom">
+                    <form (ngSubmit)="insertarRegistro()">
+                        <div class="input-group mb-3">
+                            <input [(ngModel)]="usuario" name="usuario" type="text" placeholder="Usuario" class="form-control">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" [(ngModel)]="email" name="email" type="text" class="form-control" placeholder="E-mail">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" [(ngModel)]="telefono" name="telefono" type="text" class="form-control" placeholder="Telefono">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="submit">Registrar</button>
+                        </div>
+                        {{mensaje}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br> Usuario: {{usuario2}}
+    <br> email: {{email2}}
+    <br> Telefono: {{telefono2}}
