@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styles: [
-  ]
+  styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
 
@@ -29,40 +28,39 @@ export class RegistroComponent implements OnInit {
     console.log("Nombre: "+this.email);
     console.log("Precio: "+this.telefono);
 
-    if(this.validarUsuario()){
-      console.log("Codigo: "+this.usuario);
-      console.log("Nombre: "+this.email);
-      console.log("Precio: "+this.telefono);
+    if(this.validarUsuario() && 
+      this.validateEmail(this.email) && 
+      this.validateLength(this.email,20,4) && 
+      this.validateTelefono(this.telefono) &&
+      this.validateEspacios(this.telefono) &&
+      this.validateEspacios(this.usuario) &&
+      this.validateEspacios(this.email) &&
+      this.validateLength(this.telefono,10,10))
+    {
+      this.mensaje=""
+      this.usuario2=this.usuario;
+      this.email2=this.email;
+      this.telefono2=this.telefono.substring(0,3)+"-"+this.telefono.substring(3,6)+"-"+this.telefono.substring(6,10);
     }
-    else{
-      console.log("La validacion no es correcta")
-    }
-
-    this.validateEmail(this.email)
-    this.validateEspacios(this.email)
-    this.validateTelefono(this.telefono)
-
-    this.usuario2=this.usuario;
-    this.email2=this.email;
-    this.telefono2=this.telefono;
   }
-
 
     //Validaciones
 
     validarUsuario(): boolean|undefined{
+      var validate=true;
       if(this.usuario.trim().length == 0){
         this.mensaje="El campo usuario no puede estar vacio";
-        return false;
+        validate = false;
       }
       else if(this.usuario.length < 4 || this.usuario.length > 10){
-        this.mensaje="Maximo 10 caracteres y minimo 4";
-        return false;
+        this.mensaje="Usuario debe tener maximo 10 caracteres y minimo 4";
+        validate = false;
       }
       else{
         console.log("Usuario: "+ this.usuario);
-        return true;
+        validate = true;
       }
+      return validate;
     }
 
     validateLength(valor:string,maxLength:number,minLength:number)
@@ -70,11 +68,13 @@ export class RegistroComponent implements OnInit {
       var validate = true;
       if(valor.trim().length < minLength)
       {
+        this.mensaje=valor+" debe tener minimo "+minLength+" caracteres";
         console.log("Bad minLength or null");
         validate = false;
       }
       if(valor.trim().length > maxLength)
       {
+        this.mensaje=valor+" debe tener maximo "+maxLength+" caracteres";
         console.log("Bad maxLength");
         validate = false;
       }
@@ -84,19 +84,22 @@ export class RegistroComponent implements OnInit {
     validateEmail(correo:string) {
       var pattern  = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
       var validate = true;
+      
       if (!pattern.test(correo)) 
       {
+        this.mensaje="Caracteres del correo invalido";
         console.log("Bad email");
         validate =  false;
       }
       return validate
     }
   
-    validateTelefono(telefono:string) {
-      var pattern  = new RegExp(/^[1-9]\d{6,10}$/);
+    validateTelefono(telefono:string) { 
+      var pattern  = new RegExp(/^([0-9])*$/); 
       var validate = true;
       if (!pattern.test(telefono)) 
       {
+        this.mensaje="Caracteres del telefono invalidos";
         console.log("Bad telefono");
         validate =  false;
       }
@@ -107,25 +110,14 @@ export class RegistroComponent implements OnInit {
       var espacios = false;
       var cont = 0;
       var validate = true;
-      if (valor.length!=0)
+      
+      if(valor.indexOf(" ")!=-1)
       {
-        while (!espacios && (cont < valor.length)) 
-        {
-          if (valor.charAt(cont) == " ")
-          { 
-            espacios = true;
-            cont++;
-          }
-        }
-        
-        if (espacios) 
-        { 
-          alert ("Bad espacios en blanco"); 
-          validate = false; 
-        }
+        this.mensaje=valor+" contiene espacios";
+        console.log("Bad espacios");
+        validate=false;
       }
       return validate;
     }
     
-
 }

@@ -2,64 +2,68 @@
 <div id="login">
     <h3 class="text-center">Ingresar Nuevo Producto</h3>
     <div class="container">
-        <div id="login-row" class="row justify-content-center align-items-center">
-            <div id="login-column" class="col-md-6">
+        <div id="login-row" class="row justify-content-center align-items-center mg-btm">
+            <div id="login-column" class="col-sm-12">
                 <div id="login-box" class="col-md-12 margin-bottom">
-                    <form (ngSubmit)="insertarProducto()" class="form">
-                        <h3 class="text-center text-info"></h3>
-                        <div class="form-group">
+                    <form (ngSubmit)="insertarProducto()" class="form row">
+                        <div class="col-sm-12">
+                            <h3 class="text-center text-info"></h3>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6 col-lg-2">
                             <label for="codigo" class="text-info">Código:</label><br>
-                            <input [(ngModel)]="codigo" name="codigo" type="text" id="codigo" class="form-control">
+                            <input [(ngModel)]="codigo" name="codigo" type="number" id="codigo" class="form-control">
                             <p id="errorEmail" class="error"> </p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-sm-12 col-md-6 col-lg-4">
                             <label for="nombre" class="text-info">Nombre:</label><br>
                             <input [(ngModel)]="nombre" name="nombre" type="text" id="nombre" class="form-control">
                             <p id="errorPass" class="error"> </p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-sm-12 col-md-6 col-lg-3">
                             <label for="precio" class="text-info">Precio:</label><br>
-                            <input [(ngModel)]="precio" name="precio" type="text" id="precio" class="form-control">
+                            <input [(ngModel)]="precio" name="precio" type="number" id="precio" class="form-control">
                             <p id="errorPass2" class="error"> </p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-sm-12 col-md-6 col-lg-3">
                             <label for="stock" class="text-info">Stock:</label><br>
-                            <input [(ngModel)]="stock" name="stock" type="text" id="stock" class="form-control">
+                            <input [(ngModel)]="stock" name="stock" type="number" id="stock" class="form-control">
                             <p id="errorApellido" class="error"> </p>
                         </div>
-                        <div class="form-group div-top">
-                            <button id="btn-registrar" type="submit" name="submit" class="btn btn-info btn-md btn-block boton-top">Registrar</button>
+                        <div class="form-group div-top btn-group col-sm-12">
+                            <button id="btn-registrar" type="submit" name="submit" class="btn btn-primary btn-block">Registrar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
 
-        <div class="row" id="">
-            <table id="th0">
-                <thead id="th0">
-                    <th id="th20">Código</th>
-                    <th id="th15">Nombre</th>
-                    <th id="th15">Precio</th>
-                    <th id="th15">Stock</th>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of lista_productos" class="pd-bottom">
-                        <td id="th20">
-                            <p>{{item.codigo}}</p>
-                        </td>
-                        <td class="td-img">
-                            <p>{{item.nombre}}</p>
-                        </td>
-                        <td>
-                            <p>{{item.precio}}</p>
-                        </td>
-                        <td>
-                            <p>{{item.stock}}</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row justify-content-center align-items-center" id="">
+            <div class="row table-responsive">
+                <table id=" th0 " class="">
+                    <thead id="th0 ">
+                        <th id="th20 " class="bg-primary ">Código</th>
+                        <th id="th15 " class="bg-primary ">Nombre</th>
+                        <th id="th15 " class="bg-primary ">Precio</th>
+                        <th id="th15 " class="bg-primary ">Stock</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of lista_productos " class="pd-bottom ">
+                            <td id="th20 ">
+                                <p>{{item.codigo}}</p>
+                            </td>
+                            <td class="td-img ">
+                                <p>{{item.nombre}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.precio}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.stock}}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 
